@@ -1,0 +1,63 @@
+.App {
+  text-align: center;
+  border-radius: 10px;
+}
+
+.App-header {
+  background-color: #282c34;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 1px;
+}
+.dropPage {
+  display: block;
+  text-align: center;
+}
+.dropzone {
+  display: inline-block;
+  margin: 10px;
+}
+.sendButton {
+  background-color: #282c34;
+  color: aliceblue;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+.sendButton:hover {
+  background-color: rgb(63, 60, 90);
+  cursor: pointer;
+  transition: 0.5s;
+}
+.totalDisplay {
+  display: inline-block;
+  position: absolute;
+  bottom: 10px;
+  left: -10px;
+  border-radius: 10px;
+  padding: 5px 15px;
+  background-color: #282c34;
+  color: white;
+}
+.topBar {
+  z-index: 5;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: rgba(20, 20, 20, 0.9);
+  color: white;
+  text-align: right;
+  font-size: 1.3em;
+}
+.topBar span {
+  padding: 5px;
+}
+.topBar span:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}

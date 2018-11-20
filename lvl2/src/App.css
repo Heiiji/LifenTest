@@ -1,0 +1,34 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 1px;
+}
+.dropPage {
+  display: block;
+  text-align: center;
+}
+.dropzone {
+  display: inline-block;
+  margin: 10px;
+}
+.sendButton {
+  background-color: #282c34;
+  color: aliceblue;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+.sendButton:hover {
+  background-color: rgb(63, 60, 90);
+  cursor: pointer;
+  transition: 0.5s;
+}
