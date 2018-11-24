@@ -17,12 +17,19 @@ let mainWindow;
 
 function createWindow () {
     // Create the browser window.
-    mainWindow = new BrowserWindow({width: 800, height: 600, frame: false})
+    mainWindow = new BrowserWindow({
+        width: 800,
+        minWidth: 600,
+        height: 600,
+        minHeight: 450,
+        transparent: true,
+        frame: false
+    })
 
     // and load the index.html of the app.
     // mainWindow.loadFile('index.html')
     mainWindow.loadURL(startUrl);
-    mainWindow.toggleDevTools();
+    // mainWindow.toggleDevTools();
 
     mainWindow.on('closed', function () {
         mainWindow = null

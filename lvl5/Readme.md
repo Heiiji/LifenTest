@@ -8,3 +8,17 @@ Let's connect the final pieces to finish the app: watch a directory
 
 ### Bonus
 * Surprise us! Add a feature that you think would work well here.
+
+#
+### Project Readme :
+For launch the project : 
+* npm start (launch React server)
+- Windows
+  * npm run electron-dev (electron Windows Client)
+- Linux
+  * npm run electron-dev-linux (electron linux Client)
+  
+#### Modules used :
+ * Axios
+ * fs
+ * chokidar
