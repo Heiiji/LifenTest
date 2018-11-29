@@ -29,7 +29,7 @@ function createWindow () {
     // and load the index.html of the app.
     // mainWindow.loadFile('index.html')
     mainWindow.loadURL(startUrl);
-    // mainWindow.toggleDevTools();
+    //mainWindow.toggleDevTools();
 
     mainWindow.on('closed', function () {
         mainWindow = null

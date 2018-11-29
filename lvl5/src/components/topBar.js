@@ -3,10 +3,6 @@ const electron = window.require("electron");
 
 class topBar extends Component {
 
-    constructor() {
-        super();
-    }
-
     render() {
         return (
             <div className="topBar">

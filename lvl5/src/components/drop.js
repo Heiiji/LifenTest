@@ -4,19 +4,19 @@ import axios from 'axios';
 import Loader from 'react-loader-spinner'
 import Dropzone from 'react-dropzone';
 
-const electron = window.require("electron");
+// const electron = window.require("electron");
 const fs = window.require('fs');
 const chokidar = window.require('chokidar');
 
 var watcher = chokidar.watch('FHIR', {
-    ignored: /(^|[\/\\])\../,
+    ignored: /(^|[/\\])\../,
     persistent: true
 });
 
 class App extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             accepted: [],
             rejected: [],
@@ -31,8 +31,9 @@ class App extends Component {
     componentWillMount() {
         axios.get(`https://fhirtest.uhn.ca/baseDstu3/Binary`)
             .then(res => {
+                console.log(res)
                 this.setState({
-                    uploaded: res.data.total
+                    uploaded: res.data.total ? res.data.total : res.data.entry.length
                 });
             })
 
@@ -40,41 +41,15 @@ class App extends Component {
         var vue = this;
         watcher
             .on('add', path => {
+              let file = [{
+                path: path
+              }]
                 vue.setState({
-                    loading: true
+                    loading: true,
+                    accepted: file
+
                 });
-                log(`File ${path} has been added`);
-                    let stats = fs.statSync(path);
-                fs.readFile(path, function (err, data) {
-                    console.log(stats.size)
-                    if (err) {
-                        console.error(err);
-                    }
-                    if (stats.size <= 2000000 && path.match(/\.pdf$/)) {
-                        fetch('https://fhirtest.uhn.ca/baseDstu3/Binary', { method: 'POST', body: {name: path, size: stats.size, data: data} }).then(response => {
-                            console.log('done');
-                            vue.setState({
-                                loading: false,
-                                accepted: [{name: path, size: stats.size, data: data}],
-                                done: true
-                            });
-                            axios.get(`https://fhirtest.uhn.ca/baseDstu3/Binary`)
-                                .then(res => {
-                                    vue.setState({
-                                        uploaded: res.data.total,
-                                        done: true,
-                                        loading: false
-                                    });
-                                })
-                        });
-                    } else {
-                        vue.setState({
-                            rejected: [{name: path, size: stats.size, data: data}],
-                            loading: false,
-                            done: true
-                        });
-                    }
-                });
+                this.sendData();
             })
             .on('change', path => log(`File ${path} has been changed`))
             .on('unlink', path => log(`File ${path} has been removed`));
@@ -87,6 +62,7 @@ class App extends Component {
                 loading: true
             });
             for (let i = 0; i < vue.state.accepted.length; i++) {
+              //check de la lecture
                 fs.readFile(vue.state.accepted[i].path, function (err, data) {
                     if (err) {
                         console.error(err);
@@ -103,7 +79,7 @@ class App extends Component {
                 axios.get(`https://fhirtest.uhn.ca/baseDstu3/Binary`)
                     .then(res => {
                         this.setState({
-                            uploaded: res.data.total
+                            uploaded: res.data.total ? res.data.total : res.data.entry.length
                         });
                     })
             });

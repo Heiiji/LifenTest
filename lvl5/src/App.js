@@ -9,9 +9,9 @@ class App extends Component {
     return (
       <div className="App">
           <TopBar/>
-        <header className="App-header">
-          <h1>Amazing App</h1>
-        </header>
+            <header className="App-header">
+              <h1>Amazing App</h1>
+            </header>
           <Drop/>
       </div>
     );
